@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;          /* #ffffff */
+    --foreground: 222.2 84% 4.9%;     /* #0F172A */
+    
+    --card: 210 40% 97.5%;             /* #F8FAFC */
+    --card-foreground: 222.2 84% 4.9%; /* #0F172A */
+    
+    --popover: 210 40% 97.5%;          /* #F8FAFC */
+    --popover-foreground: 222.2 84% 4.9%;
+    
+    --primary: 242 48% 58%;            /* #4F46E5 */
+    --primary-foreground: 0 0% 100%;   /* #FFFFFF */
+    
+    --secondary: 187 92% 43%;          /* #06B6D4 */
+    --secondary-foreground: 0 0% 100%;
+    
+    --muted: 213 27% 94%;              /* #EEF2F7 */
+    --muted-foreground: 215 19% 35%;   /* #475569 */
+    
+    --accent: 187 92% 43%;             /* #06B6D4 */
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 72% 51%;          /* #DC2626 */
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 210 20% 90%;             /* #E2E8F0 */
+    --input: 210 20% 90%;
+    --ring: 242 48% 58%;
+    
+    --success: 142 71% 35%;            /* #16A34A */
+    --warning: 32 95% 44%;             /* #D97706 */
+    --danger: 0 72% 51%;               /* #DC2626 */
+    
+    --radius: 0.75rem;
+
+     --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+    --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  
+  .dark {
+    --background: 229 39% 7%;          /* #0B0F19 */
+    --foreground: 210 9% 91%;          /* #E5E7EB */
+    
+    --card: 220 26% 13%;               /* #111827 */
+    --card-foreground: 210 9% 91%;
+    
+    --popover: 220 26% 13%;
+    --popover-foreground: 210 9% 91%;
+    
+    --primary: 234 89% 74%;            /* #818CF8 */
+    --primary-foreground: 229 39% 7%;  /* #0B0F19 */
+    
+    --secondary: 188 78% 53%;          /* #22D3EE */
+    --secondary-foreground: 229 39% 7%;
+    
+    --muted: 215 19% 19%;              /* #1F2937 */
+    --muted-foreground: 213 13% 64%;   /* #9CA3AF */
+    
+    --accent: 188 78% 53%;             /* #22D3EE */
+    --accent-foreground: 229 39% 7%;
+    
+    --destructive: 0 83% 72%;          /* #F87171 */
+    --destructive-foreground: 229 39% 7%;
+    
+    --border: 215 28% 22%;             /* #2B3544 */
+    --input: 215 28% 22%;
+    --ring: 234 89% 74%;
+    
+    --success: 142 72% 55%;            /* #22C55E */
+    --warning: 35 92% 53%;             /* #F59E0B */
+    --danger: 0 83% 72%;               /* #F87171 */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+  code, pre, kbd, samp { 
+    font-family: var(--font-mono); 
+  }
+}
+
+/* smooth theme switches */
+@media (prefers-reduced-motion: no-preference) {
+  .theme-animating, .theme-animating * {
+    transition:
+      background-color .28s ease,
+      color .28s ease,
+      border-color .28s ease,
+      fill .28s ease,
+      stroke .28s ease;
+  }
+}

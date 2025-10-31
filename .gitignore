@@ -1,0 +1,65 @@
+.gitignore for a monorepo-style project (frontend/ and backend/)
+
+Secrets & Keys (CRITICAL - DO NOT COMMIT THESE)
+
+----------------------------------------------------------------
+
+Ignore all .env files in all directories
+
+.env
+.env.*
+
+Specifically ignore the Next.js local env file
+
+frontend/.env.local
+
+Specifically ignore the backend .env file
+
+backend/.env
+
+----------------------------------------------------------------
+
+Backend (Node.js)
+
+Ignore the dependencies folder
+
+backend/node_modules/
+
+Ignore build output (if you use TypeScript, etc.)
+
+backend/dist/
+
+backend/build/
+
+Frontend (Next.js)
+
+Ignore the dependencies folder
+
+frontend/node_modules/
+
+Ignore Next.js build and cache folders
+
+frontend/.next/
+
+Ignore Next.js static export folder
+
+frontend/out/
+
+General OS & IDE files
+
+Windows
+
+Thumbs.db
+desktop.ini
+
+IDEs
+
+.vscode/
+.idea/
+
+Log files
+
+.log
+npm-debug.log
+yarn-debug.log*
+yarn-error.log*
