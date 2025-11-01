@@ -41,12 +41,12 @@ export default function Login(){
 
     },[authUser, loading, router])
 
-    const searchParams = useSearchParams();
+    //const searchParams = useSearchParams();
   
    const [mode, setMode] = useState('signin')
    const [oauthPending, setOauthPending] = useState(false);
    const [oauthError, setOauthError] = useState(null);
-   const urlError = searchParams.get("error");
+   //const urlError = searchParams.get("error");
 
    const [signInState, signInAction] = useActionState(
     signInWithPasswordAction,
@@ -169,7 +169,7 @@ export default function Login(){
   const activeState = mode === "signup" ? signUpState : signInState;
   const formAction = mode === "signup" ? signUpAction : signInAction;
 
-  const displayError = activeState?.error || oauthError || urlError;
+  const displayError = activeState?.error || oauthError;
   const displayMessage =
     mode === "signup" ? signUpState?.message : signInState?.message;
 
