@@ -9,7 +9,7 @@ export default function VideoList() {
     const { getIdToken } = useAuth()
 
     const getList = async () =>{
-        const endpoint= 'http://127.0.0.1:3001/list'
+        const endpoint= process.env.NEXT_PUBLIC_BACKEND_ENDPOINT + 'list'
         const token= await getIdToken()
         
        

@@ -79,7 +79,7 @@ export function CreateVideo() {
 
     videoId = getYouTubeId(url)
     const token = await getIdToken()
-    const endpoint = 'http://127.0.0.1:3001/get_data'
+    const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT + 'get_data'
     
     try {
       

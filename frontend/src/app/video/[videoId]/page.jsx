@@ -18,7 +18,7 @@ export default function videoId() {
     const { getIdToken } = useAuth()
     
     async function getVideoData() {
-        const endpoint = 'http://127.0.0.1:3001/get_video'
+        const endpoint = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT + 'get_video'
         const token = await getIdToken()
         if(!token) {
            console.log('No token found')
