@@ -1,6 +1,6 @@
-const FastifyPlugin=require('fastify-plugin')
-const Mongo=require('@fastify/mongodb')
-require('dotenv').config()
+import fastifyPlugin from 'fastify-plugin'
+import Mongo  from '@fastify/mongodb'
+import 'dotenv/config'
 
 async function MongoConnect (app, options) {
      app.register(Mongo, {
@@ -9,4 +9,4 @@ async function MongoConnect (app, options) {
      })
 }
 
-module.exports = FastifyPlugin(MongoConnect)
+export default fastifyPlugin(MongoConnect)

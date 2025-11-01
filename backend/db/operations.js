@@ -1,4 +1,4 @@
-const { user, videoListofUser, videoItem, videoData }=require('./schema-zod')
+import { user, videoListofUser, videoItem, videoData } from './schema-zod.js'
 
 
 //object validator
@@ -48,7 +48,7 @@ const result = videoData.safeParse(input)
 
 //profile operations
 
-async function userExists(app,user) {
+export async function userExists(app,user) {
   const { uid } = user
 
   try {
@@ -61,7 +61,7 @@ async function userExists(app,user) {
   }
 }
 
-async function addName(app,user,name) {
+export async function addName(app,user,name) {
 
 if(await userExists(app,user)) {
   const { uid } = user
@@ -105,7 +105,7 @@ if(await userExists(app,user)) {
 
 //videolist operations
 
-async function getVideoList(app,uid) {
+export async function getVideoList(app,uid) {
 
    try {
      const doc = await app.mongo.db
@@ -124,7 +124,7 @@ async function getVideoList(app,uid) {
    }
 }
 
-async function addVideotoList(app, user , {videoId, ...video}) {
+export async function addVideotoList(app, user , {videoId, ...video}) {
 
 const { uid } = user
 const videoDoc= video
@@ -151,7 +151,7 @@ try {
 }
 
 
-async function deleteVideofromList(app, uid, videoId) {
+export async function deleteVideofromList(app, uid, videoId) {
 
 const update= { $unset: { [`videoList.${videoId}`] : {} }}
 
@@ -171,7 +171,7 @@ try {
   
 }
 
-async function IsVideoInList(app, uid, videoId) {
+export async function IsVideoInList(app, uid, videoId) {
   
   try {
     const doc = await getVideoList(app, uid)
@@ -186,7 +186,7 @@ async function IsVideoInList(app, uid, videoId) {
 //video page operations
 
 
-async function addVideo(app, videoDoc) {
+export async function addVideo(app, videoDoc) {
 
       try {
         const res= await app.mongo.db.collection('videos').insertOne(videoDoc)
@@ -207,7 +207,7 @@ async function addVideo(app, videoDoc) {
     
 }
 
-async function getVideo(app, videoId) {
+export async function getVideo(app, videoId) {
 
   try {
     const doc= await app.mongo.db.collection('videos').findOne({videoId: videoId})
@@ -220,6 +220,3 @@ async function getVideo(app, videoId) {
 
 
 }
-
-
-module.exports= { getVideoList, getVideo, addVideotoList, deleteVideofromList, addVideo, addName, IsVideoInList }

@@ -1,7 +1,7 @@
-const { fetchTranscript } = require('youtube-transcript-plus')
-const { decodeHTML }= require('entities')
+import { fetchTranscript } from 'youtube-transcript-plus'
+import { decodeHTML } from 'entities'
 
-async function getTranscript(url) {
+export async function getTranscript(url) {
 
 try {
   const response= await fetchTranscript(url,{
@@ -170,4 +170,3 @@ function cleanTranscript(segments, opts = {}) {
 
 
 
-module.exports= { getTranscript }

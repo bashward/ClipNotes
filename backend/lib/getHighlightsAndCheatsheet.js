@@ -1,6 +1,4 @@
-const { errorCodes } = require('fastify');
-
-require('dotenv').config()
+import 'dotenv/config'
 
 
 function extractJsonBlock(text) {
@@ -36,7 +34,7 @@ function parseHighlightsCheatsheet(apiResponse) {
 }
 
 
-async function getHighlightsAndCheatSheet(transcript) {
+export async function getHighlightsAndCheatSheet(transcript) {
 
 const SYSTEM_PROMPT= `
 
@@ -53,8 +51,8 @@ Rules:
 
  Read the transcript (user message) and extract:
 
-  * **highlights**: 5–10 punchy, one-sentence takeaways (≤140 chars each).
-  * **cheatsheet**: 5–10 actionable, step-style tips or facts (≤120 chars each), phrased so they make sense out of context.
+  * **highlights**: 5–15 punchy, one-sentence takeaways (≤140 chars each).
+  * **cheatsheet**: 5–15 actionable, step-style tips or facts (≤120 chars each), phrased so they make sense out of context.
 * Do **not** include keys other than highlights and cheatsheet.
 * No nested objects, no numbering, no quotes inside items beyond normal punctuation.
 * If content is insufficient, return empty arrays.
@@ -94,7 +92,7 @@ try{
   })
   
   const data=await response.json()
-  //console.log(data.choices[0]?.message?.content)
+  
   const { highlights, cheatsheet } = parseHighlightsCheatsheet(data)
   
   return {
@@ -109,5 +107,3 @@ try{
 
 }
 
-
-module.exports= { getHighlightsAndCheatSheet }

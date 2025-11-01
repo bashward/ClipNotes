@@ -1,7 +1,7 @@
-require('dotenv').config()
+import 'dotenv/config'
 
 
-function getYouTubeId(url) {
+export function getYouTubeId(url) {
   try {
     const u = new URL(url);
     const host = u.hostname.replace(/^www\./, "");
@@ -28,7 +28,7 @@ function getYouTubeId(url) {
   return null;
 }
 
-async function getMetadata(url,Id) {
+export async function getMetadata(url,Id) {
 
 let videoId
 
@@ -58,4 +58,3 @@ throw error
 
 }
 
-module.exports= { getMetadata, getYouTubeId }

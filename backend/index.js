@@ -1,9 +1,8 @@
-const Fastify=require('fastify')
-const cors=require('@fastify/cors')
-const Mongo=require('./plugins/mongo-init')
-const fastifyFirebase=require('fastify-firebase')
-const Routes=require('./modules/routes')
-require('dotenv').config()
+import fastify from 'fastify'
+import fastifyCors from '@fastify/cors'
+import MongoConnect from './plugins/mongo-init.js'
+import Routes from './modules/routes.js'
+import 'dotenv/config'
 
 const firebaseKey = process.env.FIREBASE_KEY
 
@@ -14,16 +13,15 @@ if (!firebaseKey) {
 const decodedKey = Buffer.from(firebaseKey, 'base64').toString('utf8');
 
 const firebasePrivateKey = JSON.parse(decodedKey);
-const app=Fastify({
+const app=fastify({
     logger: true
 })
 
 //initialise firebase and mongo db storage instances.
-app.register(cors,{
+app.register(fastifyCors,{
     allowedHeaders: ['Content-Type','Authorization']
 })
-app.register(fastifyFirebase,firebasePrivateKey)
-app.register(Mongo)
+app.register(MongoConnect)
 
 //initialising routes
 app.register(Routes)
@@ -31,9 +29,15 @@ app.get('/health',(req,rep)=>{
     rep.send('Server is working fine')
 })
 
-app.listen({port: 3001}, (err,address)=>{
-    if(err) {
-        app.log.error(err)
-        process.exit(1)
-    }
-})
+const start = async () => {
+    try {
+    const {default: fastifyFirebase} = await import('fastify-firebase')
+    app.register(fastifyFirebase,firebasePrivateKey)
+
+    await app.listen({ port: 3001 || process.env.PORT })
+  } catch (err) {
+    app.log.error(err)
+    process.exit(1)
+  }
+}
+start()

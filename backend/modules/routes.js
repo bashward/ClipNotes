@@ -1,8 +1,8 @@
-const FastifyPlugin=require('fastify-plugin')
-const { getTranscript } = require('../lib/getTranscript')
-const { getMetadata, getYouTubeId } = require('../lib/getMetadata')
-const { getHighlightsAndCheatSheet } = require('../lib/getHighlightsAndCheatsheet')
-const { getVideoList, getVideo, addVideotoList, deleteVideofromList, addVideo, addName, IsVideoInList } = require('../db/operations')
+import fastifyPlugin from 'fastify-plugin'
+import { getTranscript } from '../lib/getTranscript.js';
+import { getMetadata, getYouTubeId } from '../lib/getMetadata.js';
+import { getHighlightsAndCheatSheet } from '../lib/getHighlightsAndCheatsheet.js';
+import { getVideoList, getVideo, addVideotoList, deleteVideofromList, addVideo, addName, IsVideoInList } from '../db/operations.js';
 
 async function Routes (app) {
 
@@ -101,7 +101,7 @@ else {
 app.post('/get_video',{preHandler: app.verifyFirebaseToken}, async (req,rep) =>{
     const user = req.user
     const videoId= req.body.videoId
-    console.log(videoId)
+    
     let IsInList, videoDoc
 
     try {
@@ -149,4 +149,4 @@ app.post('/add_name',{preHandler: app.verifyFirebaseToken}, async(req,rep) =>{
 
 }
 
-module.exports= FastifyPlugin(Routes)
+export default fastifyPlugin(Routes)
